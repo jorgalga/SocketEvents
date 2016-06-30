@@ -1,0 +1,18 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+  var socket = io('http://localhost:8888');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+
+  $(window).keydown(function (e) {
+    console.log("keydown " + e.keyCode);
+    var value = '{"keydown": '+e.keyCode+'}';
+    console.log(value);
+    socket.emit('keydown', value);
+  });
+
+
+</script>
